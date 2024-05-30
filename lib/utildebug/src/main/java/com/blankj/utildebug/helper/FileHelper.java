@@ -41,7 +41,7 @@ public class FileHelper {
         if (ImageUtils.isImage(file)) {
             return IMAGE;
         }
-        if (FileUtils.getFileExtension(file).equals("xml")) {
+        if ("xml".equals(FileUtils.getFileExtension(file))) {
             File parentFile = file.getParentFile();
             if (parentFile != null) {
                 if (StringUtils.equals(parentFile.getName(), "shared_prefs")) {

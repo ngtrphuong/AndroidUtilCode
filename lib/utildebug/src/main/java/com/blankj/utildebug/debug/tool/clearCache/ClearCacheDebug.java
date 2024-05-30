@@ -67,7 +67,7 @@ public class ClearCacheDebug extends AbsToolDebug {
                     if (appDataDir.exists()) {
                         String[] names = appDataDir.list();
                         for (String name : names) {
-                            if (!name.equals("lib")) {
+                            if (!"lib".equals(name)) {
                                 File file = new File(appDataDir, name);
                                 len += FileUtils.getLength(file);
                                 FileUtils.delete(file);

@@ -37,7 +37,7 @@ public class BusInfo {
         return "{ desc: " + className + "#" + funName +
                 "(" + paramsInfoString.substring(1, paramsInfoString.length() - 1) + ")" +
                 (!sticky ? "" : ", sticky: true") +
-                (threadMode.equals("POSTING") ? "" : ", threadMode: " + threadMode) +
+                ("POSTING".equals(threadMode) ? "" : ", threadMode: " + threadMode) +
                 (priority == 0 ? "" : ", priority: " + priority) +
                 (isParamSizeNoMoreThanOne ? "" : ", paramSize: " + paramsInfo.size()) +
                 " }";

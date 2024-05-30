@@ -863,7 +863,7 @@ public final class LogUtils {
             return "process: " + getProcessName()
                     + LINE_SEP + "logSwitch: " + isLogSwitch()
                     + LINE_SEP + "consoleSwitch: " + isLog2ConsoleSwitch()
-                    + LINE_SEP + "tag: " + (getGlobalTag().equals("") ? "null" : getGlobalTag())
+                    + LINE_SEP + "tag: " + ("".equals(getGlobalTag()) ? "null" : getGlobalTag())
                     + LINE_SEP + "headSwitch: " + isLogHeadSwitch()
                     + LINE_SEP + "fileSwitch: " + isLog2FileSwitch()
                     + LINE_SEP + "dir: " + getDir()

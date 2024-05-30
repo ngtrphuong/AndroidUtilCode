@@ -216,7 +216,7 @@ public final class DeviceUtils {
             Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
             while (nis.hasMoreElements()) {
                 NetworkInterface ni = nis.nextElement();
-                if (ni == null || !ni.getName().equalsIgnoreCase("wlan0")) continue;
+                if (ni == null || !"wlan0".equalsIgnoreCase(ni.getName())) continue;
                 byte[] macBytes = ni.getHardwareAddress();
                 if (macBytes != null && macBytes.length > 0) {
                     StringBuilder sb = new StringBuilder();
@@ -372,7 +372,7 @@ public final class DeviceUtils {
                 operatorName = name;
             }
         }
-        boolean checkOperatorName = operatorName.toLowerCase().equals("android");
+        boolean checkOperatorName = "android".equals(operatorName.toLowerCase());
         if (checkOperatorName) return true;
 
         String url = "tel:" + "123456";
@@ -494,7 +494,7 @@ public final class DeviceUtils {
         String type = uniqueDeviceId.substring(st, st + 1);
         if (type.startsWith("1")) {
             String macAddress = getMacAddress();
-            if (macAddress.equals("")) {
+            if ("".equals(macAddress)) {
                 return false;
             }
             return uniqueDeviceId.substring(st + 1).equals(getUdid("", macAddress));

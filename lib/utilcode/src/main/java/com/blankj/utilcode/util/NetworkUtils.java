@@ -445,9 +445,9 @@ public final class NetworkUtils {
                         return NetworkType.NETWORK_5G;
                     default:
                         String subtypeName = info.getSubtypeName();
-                        if (subtypeName.equalsIgnoreCase("TD-SCDMA")
-                                || subtypeName.equalsIgnoreCase("WCDMA")
-                                || subtypeName.equalsIgnoreCase("CDMA2000")) {
+                        if ("TD-SCDMA".equalsIgnoreCase(subtypeName)
+                                || "WCDMA".equalsIgnoreCase(subtypeName)
+                                || "CDMA2000".equalsIgnoreCase(subtypeName)) {
                             return NetworkType.NETWORK_3G;
                         } else {
                             return NetworkType.NETWORK_UNKNOWN;
