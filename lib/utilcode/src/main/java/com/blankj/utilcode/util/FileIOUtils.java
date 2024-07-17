@@ -1,6 +1,7 @@
 package com.blankj.utilcode.util;
 
 import android.util.Log;
+import io.github.pixee.security.BoundedLineReader;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -679,7 +680,7 @@ public final class FileIOUtils {
                         new InputStreamReader(new FileInputStream(file), charsetName)
                 );
             }
-            while ((line = reader.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
                 if (curLine > end) break;
                 if (st <= curLine && curLine <= end) list.add(line);
                 ++curLine;

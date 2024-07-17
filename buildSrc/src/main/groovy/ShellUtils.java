@@ -1,3 +1,4 @@
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -156,15 +157,15 @@ public final class ShellUtils {
                         new InputStreamReader(process.getErrorStream(), "UTF-8")
                 );
                 String line;
-                if ((line = successResult.readLine()) != null) {
+                if ((line = BoundedLineReader.readLine(successResult, 5_000_000)) != null) {
                     successMsg.append(line);
-                    while ((line = successResult.readLine()) != null) {
+                    while ((line = BoundedLineReader.readLine(successResult, 5_000_000)) != null) {
                         successMsg.append(LINE_SEP).append(line);
                     }
                 }
-                if ((line = errorResult.readLine()) != null) {
+                if ((line = BoundedLineReader.readLine(errorResult, 5_000_000)) != null) {
                     errorMsg.append(line);
-                    while ((line = errorResult.readLine()) != null) {
+                    while ((line = BoundedLineReader.readLine(errorResult, 5_000_000)) != null) {
                         errorMsg.append(LINE_SEP).append(line);
                     }
                 }
