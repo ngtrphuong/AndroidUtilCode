@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.StatFs;
 import android.text.TextUtils;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -1193,7 +1195,7 @@ public final class FileUtils {
         boolean isURL = filePath.matches("[a-zA-z]+://[^\\s]*");
         if (isURL) {
             try {
-                HttpsURLConnection conn = (HttpsURLConnection) new URL(filePath).openConnection();
+                HttpsURLConnection conn = (HttpsURLConnection) Urls.create(filePath, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).openConnection();
                 conn.setRequestProperty("Accept-Encoding", "identity");
                 conn.connect();
                 if (conn.getResponseCode() == 200) {
