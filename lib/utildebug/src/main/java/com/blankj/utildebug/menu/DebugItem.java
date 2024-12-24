@@ -14,6 +14,7 @@ import com.blankj.utildebug.base.drawable.PolygonDrawable;
 import com.blankj.utildebug.base.rv.BaseItem;
 import com.blankj.utildebug.base.rv.ItemViewHolder;
 import com.blankj.utildebug.debug.IDebug;
+import java.security.SecureRandom;
 
 import java.util.List;
 import java.util.Random;
@@ -64,7 +65,7 @@ public class DebugItem extends BaseItem<DebugItem> {
         });
     }
 
-    private static final Random RANDOM = new Random();
+    private static final Random RANDOM = new SecureRandom();
 
     private static int getRandomColor() {
         return ColorUtils.getColor(COLORS[RANDOM.nextInt(6)]);
