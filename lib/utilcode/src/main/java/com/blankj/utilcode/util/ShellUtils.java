@@ -1,6 +1,7 @@
 package com.blankj.utilcode.util;
 
 import android.support.annotation.NonNull;
+import io.github.pixee.security.SystemCommand;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -293,7 +294,7 @@ public final class ShellUtils {
         StringBuilder errorMsg = null;
         DataOutputStream os = null;
         try {
-            process = Runtime.getRuntime().exec(isRooted ? "su" : "sh", envp, null);
+            process = SystemCommand.runCommand(Runtime.getRuntime(), isRooted ? "su" : "sh", envp, null);
             os = new DataOutputStream(process.getOutputStream());
             for (String command : commands) {
                 if (command == null) continue;
