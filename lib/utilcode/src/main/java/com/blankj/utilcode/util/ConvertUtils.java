@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.blankj.utilcode.constant.MemoryConstants;
 import com.blankj.utilcode.constant.TimeConstants;
+import io.github.pixee.security.BoundedLineReader;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -684,7 +685,7 @@ public final class ConvertUtils {
             List<String> list = new ArrayList<>();
             reader = new BufferedReader(new InputStreamReader(is, getSafeCharset(charsetName)));
             String line;
-            while ((line = reader.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
                 list.add(line);
             }
             return list;
