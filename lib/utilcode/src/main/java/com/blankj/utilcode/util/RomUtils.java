@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Environment;
 import android.text.TextUtils;
+import io.github.pixee.security.BoundedLineReader;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -398,7 +399,7 @@ public final class RomUtils {
         try {
             Process p = Runtime.getRuntime().exec("getprop " + propName);
             input = new BufferedReader(new InputStreamReader(p.getInputStream()), 1024);
-            String ret = input.readLine();
+            String ret = BoundedLineReader.readLine(input, 5_000_000);
             if (ret != null) {
                 return ret;
             }
