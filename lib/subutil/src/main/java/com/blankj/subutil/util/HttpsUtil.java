@@ -1,5 +1,7 @@
 package com.blankj.subutil.util;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -72,7 +74,7 @@ public final class HttpsUtil {
         DataOutputStream os = null;
         InputStream is = null;
         try {
-            URL sUrl = new URL(url);
+            URL sUrl = Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             connection = (HttpURLConnection) sUrl.openConnection();
             connection.setConnectTimeout(CONNECT_TIMEOUT_TIME);
             connection.setReadTimeout(READ_TIMEOUT_TIME);
